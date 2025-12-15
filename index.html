@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Surprise</title>
+    <title>Surprise</title>
     <style>
         * {
             margin: 0;
@@ -112,22 +112,13 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>📸 Photo Surprise</h1>
-            <p>Une nouvelle photo à chaque scan !</p>
+            <h1>Ba2oussi</h1>
         </div>
         
         <div class="photo-container">
             <img id="photo" alt="Photo aléatoire">
         </div>
-        
-        <div class="footer">
-            <button class="reload-btn" onclick="loadRandomPhoto()">
-                🔄 Nouvelle photo
-            </button>
-            <div class="counter">
-                Photo <span id="counter">1</span> sur <span id="total">0</span>
-            </div>
-        </div>
+    
     </div>
 
     <script>
@@ -161,7 +152,6 @@
             document.getElementById('total').textContent = photos.length;
         }
 
-        // Charge une photo au démarrage
         loadRandomPhoto();
     </script>
 </body>
