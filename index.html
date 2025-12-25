@@ -10,7 +10,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             min-height: 100vh;
             display: flex;
@@ -20,7 +20,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             padding: 20px;
         }
-        
+
         .container {
             background: white;
             border-radius: 20px;
@@ -29,24 +29,14 @@
             max-width: 600px;
             width: 100%;
         }
-        
+
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 30px;
             text-align: center;
         }
-        
-        .header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            opacity: 0.9;
-            font-size: 16px;
-        }
-        
+
         .photo-container {
             position: relative;
             width: 100%;
@@ -54,7 +44,7 @@
             background: #f0f0f0;
             overflow: hidden;
         }
-        
+
         .photo-container img {
             position: absolute;
             top: 0;
@@ -64,91 +54,64 @@
             object-fit: cover;
             animation: fadeIn 0.5s ease-in;
         }
-        
+
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-        
-        .footer {
-            padding: 30px;
-            text-align: center;
-        }
-        
-        .reload-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        
-        .reload-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
-        }
-        
-        .reload-btn:active {
-            transform: translateY(0);
-        }
-        
-        .counter {
-            margin-top: 20px;
-            color: #666;
-            font-size: 14px;
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Ba2oussi</h1>
-        </div>
-        
-        <div class="photo-container">
-            <img id="photo" alt="Photo aléatoire">
-        </div>
-    
+
+<div class="container">
+    <div class="header">
+        <h1>Ba2oussi</h1>
     </div>
 
-    <script>
-        // 🎯 REMPLACE CES URLs PAR TES PROPRES PHOTOS
-        const photos = [
-            'img/IMG-20251215-WA0009.jpg',
-            'img/IMG-20251215-WA0010.jpg',
-            'img/IMG-20251215-WA0011.jpg',
-            'img/IMG-20251215-WA0012.jpg'
-        ];
+    <div class="photo-container">
+        <img id="photo" alt="Photo aléatoire">
+    </div>
+</div>
 
-        let lastPhotoIndex = -1;
-        let viewCount = 0;
+<!-- 🎵 BACKGROUND MUSIC -->
+<audio id="bg-music" autoplay loop>
+    <source src="music/background.mp3" type="audio/mpeg">
+</audio>
 
-        function loadRandomPhoto() {
-            // S'assure de ne pas afficher la même photo deux fois de suite
-            let randomIndex;
-            do {
-                randomIndex = Math.floor(Math.random() * photos.length);
-            } while (randomIndex === lastPhotoIndex && photos.length > 1);
-            
-            lastPhotoIndex = randomIndex;
-            viewCount++;
-            
-            document.getElementById('photo').src = photos[randomIndex];
-            document.getElementById('counter').textContent = viewCount;
-            document.getElementById('total').textContent = photos.length;
-        }
+<script>
+    const photos = [
+        'img/IMG-20251215-WA0009.jpg',
+        'img/IMG-20251215-WA0010.jpg',
+        'img/IMG-20251215-WA0011.jpg',
+        'img/IMG-20251215-WA0012.jpg'
+    ];
 
-        loadRandomPhoto();
-    </script>
+    let lastPhotoIndex = -1;
+
+    function loadRandomPhoto() {
+        let randomIndex;
+        do {
+            randomIndex = Math.floor(Math.random() * photos.length);
+        } while (randomIndex === lastPhotoIndex && photos.length > 1);
+
+        lastPhotoIndex = randomIndex;
+        document.getElementById('photo').src = photos[randomIndex];
+    }
+
+    loadRandomPhoto();
+
+    const music = document.getElementById('bg-music');
+    music.volume = 0.4;
+
+    function enableMusic() {
+        music.play().catch(() => {});
+        document.removeEventListener('click', enableMusic);
+        document.removeEventListener('touchstart', enableMusic);
+    }
+
+    document.addEventListener('click', enableMusic);
+    document.addEventListener('touchstart', enableMusic);
+</script>
+
 </body>
 </html>
