@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surprise</title>
-
     <style>
         * {
             margin: 0;
@@ -27,6 +26,13 @@
             text-align: center;
         }
 
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
         h1 {
             font-size: 48px;
             margin-bottom: 30px;
@@ -44,18 +50,24 @@
             height: 100%;
             object-fit: cover;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
     </style>
 </head>
-
 <body>
 
-    <div class="container">
-        <!-- Write your 2 words here -->
-        <h1>Ba2oussi</h1>
-
-        <!-- Big centered image -->
-        <div class="photo-container"> <img id="photo" alt="Photo aléatoire"> </div>
+<div class="container">
+    <div class="header">
+        <h1>Pael Charline</h1>
     </div>
+
+    <div class="photo-container">
+        <img id="photo" alt="Photo aléatoire">
+    </div>
+</div>
 
 <!-- 🎵 BACKGROUND MUSIC -->
 <audio id="bg-music" autoplay loop>
@@ -77,7 +89,7 @@
         'img/kirkified-1766761052317.png',
         'img/kirkified-1766761111366.png',
         'img/kirkified-1766592235923.png',
-        'img/kirkified-1766591143711.png'
+        'kirkified-1766591143711.png'
     ];
 
     let lastPhotoIndex = -1;
